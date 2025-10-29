@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 app=Flask(__name__)
 JOBS=[
   {
@@ -38,6 +38,25 @@ def hello_world():
 @app.route("/api/jobs")
 def list_jobs():
   return jsonify(JOBS)
+
+
+
+# @app.route('/apply/<int:job_id>', methods=['GET', 'POST'])
+# def apply(job_id):
+#     job = next((job for job in JOBS if job["id"] == job_id), None)
+#     if not job:
+#         return "Job not found", 404
+
+#     if request.method == 'POST':
+#         name = request.form['name']
+#         email = request.form['email']
+#         message = request.form['message']
+#         print(f"New application for {job['title']} from {name} ({email}): {message}")
+#         return f"<h3>Thank you {name}! Your application for {job['title']} has been submitted.</h3>"
+
+#     return render_template('apply.html', job=job)
+
+#     return "Application sent successfully!"
 if __name__== "__main__":
   app.run(host='0.0.0.0',debug='True')
-  
+
